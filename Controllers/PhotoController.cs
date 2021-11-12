@@ -8,6 +8,7 @@ using PhotoSharingApplication.Models;
 
 namespace PhotoSharingApplication.Controllers
 {
+    [HandleError(View = "Error")]
     [ValueReporter]
     public class PhotoController : Controller
     {
@@ -20,7 +21,7 @@ namespace PhotoSharingApplication.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult _PhotoGallery (int number = 0)
+        public ActionResult _PhotoGallery(int number = 0)
         {
             List<Photo> photos;
             if (number == 0)
@@ -37,7 +38,7 @@ namespace PhotoSharingApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult Display (int id)
+        public ActionResult Display(int id)
         {
             Photo photo = context.Photos.Find(id);
             if (photo == null)
@@ -56,7 +57,7 @@ namespace PhotoSharingApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create (Photo photo, HttpPostedFileBase image)
+        public ActionResult Create(Photo photo, HttpPostedFileBase image)
         {
             photo.CreatedDate = DateTime.Today;
             if (!ModelState.IsValid)
@@ -115,6 +116,10 @@ namespace PhotoSharingApplication.Controllers
             }
 
         }
+        public ActionResult SlideShow() 
+         {
+            throw new NotImplementedException("The SlideShow action is not yet ready");
+         }
 
 
 
